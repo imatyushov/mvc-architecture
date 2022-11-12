@@ -28,13 +28,19 @@ module.exports = {
         users.splice(userIndex, 1)
         return id;
         },
-    removeByUsername: ({id}) => {},
-    getAll: () => {},
-    getById: ({id}) => {},
+    removeByUsername: ({username}) => {
+        const userIndex = users.findIndex(user => user.username === username)
+        if (userIndex === -1) {
+            throw new Error('Пользователь с таким username не найден')
+        }
+        users.splice(userIndex, 1)
+        return username;
+    },
 
     getAll: () => {
         return users;
     },
+
     getById: ({id}) => {
         return users.find(user => user.id === id);
     }

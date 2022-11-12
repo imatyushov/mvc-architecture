@@ -12,5 +12,6 @@ app.use(express.urlencoded({extended: false}));
 
 app.get('/users', userController.getAll);
 app.post('/users/create', userController.create);
+app.delete('/users/remove', userController.removeById)
 
 app.listen(PORT, () => console.log(`Server has been started on ${PORT} PORT`))

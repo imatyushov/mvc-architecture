@@ -24,5 +24,27 @@ module.exports = {
             users: userModel.getAll()
         })
     },
-    getById: (req, res) => {}
+    getById: (req, res) => {},
+
+    removeById:(req, res) => {
+      try {
+          const id = req.query.id;
+
+          if (!id) {
+              throw new Error('id не указан');
+          }
+
+          userModel.removeById({id});
+
+          res.render('users.hbs', {
+              users: userModel.getAll()
+          })
+
+      } catch (e) {
+          return res.render('users-error.hbs', {
+              message: e.message
+          })
+      }
+
+    }
 }
